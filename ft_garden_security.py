@@ -1,3 +1,5 @@
+#!/usr/bin/env python3
+
 class SecurePlant:
 
     def set_height(self, value: int) -> None:
