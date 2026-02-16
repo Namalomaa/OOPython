@@ -108,10 +108,12 @@ class Garden:
     def get_plants(self) -> list[Plant]:
         return self._plants
 
+    def display_add(self, plant: Plant) -> None:
+        print(f"Added {plant.get_name()} to {self.owner}'s garden")
+
     def add_plant(self, plant: Plant) -> None:
         self._plants += [plant]
         self.total_plants += 1
-        print(f"Added {plant.get_name()} to {self.owner}'s garden")
 
     def grow_all(self) -> None:
         print(f"{self.owner} is helping all plants grow...")
@@ -145,9 +147,7 @@ class GardenManager:
         GardenManager.total_gardens += 1
 
     def garden_network(cls) -> None:
-        print("Garden Network Created")
         return cls()
-
 
     garden_network = classmethod(garden_network)
 
@@ -195,8 +195,11 @@ if __name__ == "__main__":
 
     owner1 = Garden("Alice")
     owner1.add_plant(p1)
+    owner1.display_add(p1)
     owner1.add_plant(f1)
+    owner1.display_add(f1)
     owner1.add_plant(pr1)
+    owner1.display_add(pr1)
 
     owner2 = Garden("Bob")
     owner2.add_plant(Plant("Olive", 92))
@@ -214,7 +217,8 @@ if __name__ == "__main__":
 
     print("Height validation test:",
           GardenManager.GardenStats.validate_height(p1.get_height()))
-
+    p2 = Plant("Almond Tree", 30)
+    owner1.add_plant(p2)
     score1 = GardenManager.GardenStats.calculate_score(owner1.get_plants())
     score2 = GardenManager.GardenStats.calculate_score(owner2.get_plants())
 
