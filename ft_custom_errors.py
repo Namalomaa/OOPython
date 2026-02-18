@@ -24,7 +24,7 @@ def check_plant(plant: str, plant_status: str) -> None:
 
 def check_water(water_level: int) -> None:
     print("Testing WaterError...")
-    if water_level < 0:
+    if water_level <= 0:
         raise WaterError("Not enough water in the tank!")
 
 
