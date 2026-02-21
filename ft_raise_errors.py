@@ -50,4 +50,3 @@ if __name__ == "__main__":
     print("=== Garden Plant Health Checker ===")
     print()
     test_plant_checks()
-
