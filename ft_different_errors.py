@@ -11,7 +11,7 @@ def garden_operations(error: str) -> None:
             "flower": 15,
             "tree": 115
         }
-        print(plants["rose"])
+        print(plants["missing_plant"])
 
 
 def test_error_types() -> None:
