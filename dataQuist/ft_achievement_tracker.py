@@ -1,6 +1,5 @@
 #!/usr/bin/env python3
 
-
 def main():
     print("=== Achievement Tracker System ===\n")
     alice = {"first_kill", "level_10", "treasure_hunter",
