@@ -34,7 +34,7 @@ def sort_dict(inventory: dict) -> list:
     return items
 
 
-def main():
+def main() -> None:
     print("=== Inventory System Analysis===\n")
 
     inventory = parse_inventory_data()

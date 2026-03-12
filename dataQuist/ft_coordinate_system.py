@@ -17,7 +17,7 @@ def parse_coordinates(coordinates: str) -> tuple[int, int, int]:
     return (x, y, z)
 
 
-def main():
+def main() -> None:
     print("=== Game Coordinate System ===\n")
     origin = (0, 0, 0)
     position = (10, 20, 5)
