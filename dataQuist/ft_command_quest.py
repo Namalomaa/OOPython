@@ -2,6 +2,7 @@
 
 import sys
 
+
 def main() -> None:
     print("=== Command Quest ===")
     if len(sys.argv) < 2:
