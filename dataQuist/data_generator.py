@@ -283,7 +283,7 @@ class PixelDataGenerator:
         print()
 
         # Exercise 5 - Event stream
-        events = self.generate_exercise_data(5, count=3)
+        events = self.generate_exercise_data(5, count=1000)
         print("Exercise 5 - Data Stream Processor:")
         for event in events:
             print(
