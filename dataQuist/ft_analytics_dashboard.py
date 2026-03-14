@@ -11,12 +11,12 @@ def main() -> None:
                               "first_blood"]},
         "bob": {"score": 1800, "status": True,
                 "achieve": ["first_kill", "level_10",
-                            "boss_slayer", "collector", "combo_king"]},
+                            "boss_slayer", "collector", "first_blood"]},
         "charlie": {"score": 2150, "status": True,
-                    "achieve": ["level_10", "treasure_hunter",
-                                "speed_demon", "perfectionist"]},
+                    "achieve": ["first_kill", "level_10", "boss_slayer",
+                                "speed_demon"]},
         "diana": {"score": 2050, "status": True,
-                  "achieve": ["boss_hunter", "pixel_perfect",
+                  "achieve": ["boss_hunter", "first_kill",
                               "combo_king", "explorer"]},
     }
 
@@ -48,6 +48,23 @@ def main() -> None:
     print(f"Unique players: {players_set}")
     achievements_set = {a for p in info for a in info[p]["achieve"]}
     print(f"Unique achievements: {achievements_set}")
+    regions = [
+            {"name": "alice", "region": "north"},
+            {"name": "bob", "region": "east"},
+            {"name": "charlie", "region": "east"},
+            {"name": "diana", "region": "central"}
+            ]
+    active_regions = {reg["region"] for reg in regions}
+    print(f"Actice regions: {active_regions}")
+    print()
+
+    print("=== Combined Analysis ===")
+    print(f"Total players: {len(info)}")
+    print(f"Total unique achievements {len(achievements_set)}")
+    print(f"Average score: {sum(scores) / len(scores)}")
+    top = max(info, key=lambda x: info[x]["score"])
+    print(f"Top performer: {top} ({info[top]["score"]} points, {len(info[top]["achieve"])} achievements)")
+
 
 
 if __name__ == "__main__":
