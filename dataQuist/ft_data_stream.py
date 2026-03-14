@@ -1,9 +1,9 @@
-from typing import Generator
-def stream_events(count: int) -> Generator[dict, None, None]:
+
+def stream_events(count: int) -> dict:
     players = ["alice", "bob", "charlie"]
     events = ["killed monster", "found treasure", "leveled up"]
 
-    for i in range (count):
+    for i in range(count):
         player = players[i % len(players)]
         event = events[i % len(events)]
         level = (i % 14) + 1
@@ -15,13 +15,14 @@ def stream_events(count: int) -> Generator[dict, None, None]:
         }
 
 
-def fibonacci_gen() -> Generator[int, None, None]:
+def fibonacci_gen() -> int:
     a, b = 0, 1
     while True:
         yield a
         a, b = b, a + b
 
-def prime_gen() -> Generator[int, None, None]:
+
+def prime_gen() -> int:
     num = 2
     while True:
         for i in range(2, num):
@@ -41,7 +42,7 @@ def main() -> None:
     high_level_players = 0
     treasure_events = 0
     level_up_events = 0
-    for event in  stream_events(1000):
+    for event in stream_events(1000):
         if event["level"] >= 10:
             high_level_players += 1
         if event["event"] == "found treasure":
@@ -73,7 +74,9 @@ def main() -> None:
     for _ in range(4):
         print(next(prime), end=", ")
     print(next(prime), end="")
-    
+
     print()
+
+
 if __name__ == "__main__":
     main()
