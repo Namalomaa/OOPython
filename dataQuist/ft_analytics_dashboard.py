@@ -63,8 +63,8 @@ def main() -> None:
     print(f"Total unique achievements {len(achievements_set)}")
     print(f"Average score: {sum(scores) / len(scores)}")
     top = max(info, key=lambda x: info[x]["score"])
-    print(f"Top performer: {top} ({info[top]["score"]} points, {len(info[top]["achieve"])} achievements)")
-
+    print(f"Top performer: {top} ({info[top]["score"]}", end="")
+    print(f" points, {len(info[top]["achieve"])} achievements)")
 
 
 if __name__ == "__main__":
