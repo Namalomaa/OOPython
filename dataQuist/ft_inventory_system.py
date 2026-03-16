@@ -68,10 +68,10 @@ def main() -> None:
             least_abundent = item
 
     unit = "units" if inventory[most_abundent] != 1 else "unit"
-    print(f"Most abundent: {most_abundent} ", sep="")
-    print(f"{inventory[most_abundent]} {unit})")
+    print(f"Most abundent: {most_abundent} ", end="")
+    print(f"({inventory[most_abundent]} {unit})")
     unit = "units" if inventory[least_abundent] != 1 else "unit"
-    print(f"Least abundent: {least_abundent} ", sep="")
+    print(f"Least abundent: {least_abundent} ", end="")
     print(f"({inventory[least_abundent]} {unit})")
     print()
 

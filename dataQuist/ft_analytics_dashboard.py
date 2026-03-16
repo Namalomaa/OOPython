@@ -5,7 +5,7 @@ def main() -> None:
     print()
 
     info = {
-        "alice": {"score": 2300, "status": False,
+        "alice": {"score": 2300, "status": True,
                   "achieve": ["first_kill", "level_10",
                               "treasure_hunter", "speed_demon",
                               "first_blood"]},
@@ -15,7 +15,7 @@ def main() -> None:
         "charlie": {"score": 2150, "status": True,
                     "achieve": ["first_kill", "level_10", "boss_slayer",
                                 "speed_demon"]},
-        "diana": {"score": 2050, "status": True,
+        "diana": {"score": 2050, "status": False,
                   "achieve": ["boss_hunter", "first_kill",
                               "combo_king", "explorer"]},
     }
@@ -55,7 +55,7 @@ def main() -> None:
             {"name": "diana", "region": "central"}
             ]
     active_regions = {reg["region"] for reg in regions}
-    print(f"Actice regions: {active_regions}")
+    print(f"Active regions: {active_regions}")
     print()
 
     print("=== Combined Analysis ===")
