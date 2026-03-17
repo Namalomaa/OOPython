@@ -1,6 +1,14 @@
 #!/usr/bin/env python3
 import sys
 
+def is_digit(s: str) -> bool:
+    if s == "":
+        return False
+    for char in s:
+        if char < "0" or char > "9":
+            return False
+    return True
+
 
 def my_int(str_int: str) -> int:
     digits = {
@@ -17,21 +25,26 @@ def my_int(str_int: str) -> int:
     return result
 
 
-def parse_inventory_data() -> dict:
+def parse_inventory_data() -> dict | None:
     inventory = {}
-    flag = 0
-    counter = 0
-    for ar in sys.argv:
-        if ar[counter] == ":":
-            flag = 1
-    if not flag:
-        return flag
 
     for arg in sys.argv[1:]:
+        if ":" not in arg:
+            print("Invalid input. Usage: python3 ft_inventory_system.py"
+                    " item1:quantity1 item2:quantity2 ...")
+            return
         colon = 0
         while arg[colon] != ":":
             colon += 1
         item = arg[:colon]
+        if item == "":
+            print("Invalid input. Usage: python3 ft_inventory_system.py"
+                    " item1:quantity1 item2:quantity2 ...")
+            return
+        if not is_digit(arg[colon + 1:]):
+            print("Invalid input. Usage: python3 ft_inventory_system.py"
+                    " item1:quantity1 item2:quantity2 ...")
+            return
         count = my_int(arg[colon + 1:])
         inventory[item] = count
     return inventory
@@ -65,9 +78,7 @@ def main() -> None:
 
     print("=== Inventory System Analysis===")
     inventory = parse_inventory_data()
-    if inventory == 0:
-        print("Invalid input Usage: python3 ft_inventory_system.py"
-              " item1:quantity1 item2:quantity2 ...")
+    if inventory is None:
         return
     print()
     total_items = 0
@@ -93,20 +104,20 @@ def main() -> None:
     print()
 
     print("=== Inventory Statistics ===")
-    most_abundent = None
-    least_abundent = None
+    most_abundant = None
+    least_abundant = None
     for item, count in inventory.items():
-        if most_abundent is None or count > inventory[most_abundent]:
-            most_abundent = item
-        if least_abundent is None or count < inventory[least_abundent]:
-            least_abundent = item
+        if most_abundant is None or count > inventory[most_abundant]:
+            most_abundant = item
+        if least_abundant is None or count < inventory[least_abundant]:
+            least_abundant = item
 
-    unit = "units" if inventory[most_abundent] != 1 else "unit"
-    print(f"Most abundent: {most_abundent} ", end="")
-    print(f"({inventory[most_abundent]} {unit})")
-    unit = "units" if inventory[least_abundent] != 1 else "unit"
-    print(f"Least abundent: {least_abundent} ", end="")
-    print(f"({inventory[least_abundent]} {unit})")
+    unit = "units" if inventory[most_abundant] != 1 else "unit"
+    print(f"Most abundant: {most_abundant} ", end="")
+    print(f"({inventory[most_abundant]} {unit})")
+    unit = "units" if inventory[least_abundant] != 1 else "unit"
+    print(f"Least abundant: {least_abundant} ", end="")
+    print(f"({inventory[least_abundant]} {unit})")
     print()
 
     print("=== Item Categories ===")
