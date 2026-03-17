@@ -43,6 +43,7 @@ def main() -> None:
     high_level_players = 0
     treasure_events = 0
     level_up_events = 0
+    counter = 0
     for event in stream_events(1000):
         if event["level"] >= 10:
             high_level_players += 1
@@ -51,8 +52,11 @@ def main() -> None:
         if event["event"] == "leveled up":
             level_up_events += 1
         events_processed += 1
-        print(f"Event {event['id']}: Player {event['player']} ", end="")
-        print(f"(level {event['level']}) {event['event']}")
+        if counter < 3:
+            print(f"Event {event['id']}: Player {event['player']} ", end="")
+            print(f"(level {event['level']}) {event['event']}")
+            counter += 1
+    print("...")
     print()
     print("=== Stream Analytics ===")
     print(f"Total events processed: {events_processed}")

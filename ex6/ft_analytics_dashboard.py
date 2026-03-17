@@ -62,7 +62,10 @@ def main() -> None:
     print(f"Total players: {len(info)}")
     print(f"Total unique achievements {len(achievements_set)}")
     print(f"Average score: {sum(scores) / len(scores)}")
-    top = max(info, key=lambda x: info[x]["score"])
+    top = None
+    for player in info:
+        if top is None or info[player]["score"] > info[top]["score"]:
+            top = player
     print(f"Top performer: {top} ({info[top]["score"]}", end="")
     print(f" points, {len(info[top]["achieve"])} achievements)")
 
