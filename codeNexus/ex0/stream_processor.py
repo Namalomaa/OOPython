@@ -92,7 +92,31 @@ class TextProcessor(DataProcessor):
 
 
 class LogProcessor(DataProcessor):
-    pass
+    def __init__() -> None:
+        print("Initializing Log Processor...")
+        self.log = {}
+
+    def validate(self, data: Any) -> bool:
+        try:
+            data += ""
+        except ValueError:
+            print("invalid Input")
+            return False
+        if ": " not in data:
+            print("Invalid input")
+            return False
+        pos = 0
+        for p in data:
+            if p != ":":
+                pos += 1
+        log_name = data[:pos]
+        log_msg = data[pos:]
+        if not all_caps(log_name):
+            print("invalid log input")
+            return False
+
+
+
 
 
 def main():
@@ -116,7 +140,7 @@ def main():
         print("Validation: Text data verification failed")
     print(t.format_output("Output: "))
     print()
-    
+
 
 
 if __name__ == "__main__":
