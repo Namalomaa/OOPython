@@ -33,7 +33,6 @@ class NumericProcessor(DataProcessor):
                 print("Invalid numeric data")
                 return False 
         self.numeric_data = [data]
-        print("Validation: Numeric data verified")
         return True
     
     def process(self, data: Any) -> str:
@@ -41,7 +40,6 @@ class NumericProcessor(DataProcessor):
             return "processing failed"
         print(f"Processing data: {data}")
         return "processing complete"
-
 
     def format_output(self, result: str) -> str:
         total = 0
@@ -58,7 +56,6 @@ class NumericProcessor(DataProcessor):
         super().format_output(base)
         return base
     
-
 
 class TextProcessor(DataProcessor):
     def validate(self, data: Any) -> bool:
@@ -80,7 +77,9 @@ def main():
     n = NumericProcessor()
     n_data = [1, 2, 3, 4, 5]
     n.process(n_data)
-    n.validate(n_data)
+    flag = n.validate(n_data)
+    if flag:
+        print("Validation: Numeric data verified")
     n.format_output(n_data)
 
 if __name__ == "__main__":
