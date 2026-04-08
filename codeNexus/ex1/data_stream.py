@@ -178,6 +178,3 @@ if __name__ == "__main__":
         l_proc.output()
 
     stream.print_processors_stats()
-    # print(f"Stream.proc {stream.processors}")
-
-
