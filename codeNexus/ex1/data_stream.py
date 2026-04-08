@@ -140,10 +140,9 @@ if __name__ == "__main__":
     print("=== Code Nexus - Data Stream ===\n")
     print("Initilize Data Stream...")
 
-    s0 = DataStream()
-    s0.print_processors_stats()
-    print()
     stream = DataStream()
+    stream.print_processors_stats()
+    print()
     print("Registering Numeric Processor\n")
     n_proc = NumericProcessor()
     stream.register_processor(n_proc)
