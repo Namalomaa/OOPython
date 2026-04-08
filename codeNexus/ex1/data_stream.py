@@ -97,40 +97,54 @@ class LogProcessor(DataProcessor):
 class DataStream:
 
     def __init__(self):
-        print("Initilize Data Stream...")
-        self.items = 0
         self.processors = []
 
     def register_processor(self, proc: DataProcessor) -> None:
         self.processors.append(proc)
 
     def process_stream(self, stream: list[Any]) -> None:
-        handeled = False
+
         for element in stream:
+            handled = False
             for proc in self.processors:
                 if proc.validate(element):
                     proc.ingest(element)
-                    self.processed += 1
-                    handeled = True
-            if not handeled:    
-                print("DataStream error - Can't process element in stream"
-                      f" {element}")
-                
+                    handled = True
+                    break
+            if not handled:
+                print(f"DataStream error - Can't process element in stream: "
+                      f"{element}")
 
     def print_processors_stats(self) -> None:
         print("== DataStream statistics ==")
-        for e in self.processors:
-            if isinstance(e, NumericProcessor):
-                print(f"Numeric Processor: total"
-                      f" {len(self.processed) + len(self.remainder)}"
-                      f"items proccesed, remaining "
-                  f"{len(self.remainder)} on processor")
+
+        if not self.processors:
+            print("No processor found, no data")
+            return
+        for proc in self.processors:
+            total = len(proc.p_data)
+            remaining = len(proc.p_data) - proc.index
+
+            if isinstance(proc, NumericProcessor):
+                print(f"Numeric Processor: total {total} items processed, "
+                      f"remaining {remaining} on processor")
+            elif isinstance(proc, TextProcessor):
+                print(f"Text Processor: total {total} items processed, "
+                      f"remaining {remaining} on processor")
+            elif isinstance(proc, LogProcessor):
+                print(f"Log Processor: total {total} items processed, "
+                      f"remaining {remaining} on processor")
 
 
 if __name__ == "__main__":
-    print("=== Code Nexus - Data Stream ===")
+    print("=== Code Nexus - Data Stream ===\n")
+    print("Initilize Data Stream...")
+
+    s0 = DataStream()
+    s0.print_processors_stats()
+    print()
     stream = DataStream()
-    print("Registering Numeric Processor")
+    print("Registering Numeric Processor\n")
     n_proc = NumericProcessor()
     stream.register_processor(n_proc)
     batch = [
@@ -144,6 +158,26 @@ if __name__ == "__main__":
     ]
     print(f"Send first batch of data on stream: {batch}")
     stream.process_stream(batch)
+    stream.print_processors_stats()
+    print("\nRegistering other data processors")
+    t_proc = TextProcessor()
+    l_proc = LogProcessor()
+    stream.register_processor(t_proc)
+    stream.register_processor(l_proc)
+    print("Send the same batch again")
+    stream.process_stream(batch)
+    stream.print_processors_stats()
+    print("Consume some elements from the data processors: Numeric 3,"
+          " Text 2, Log 1")
+    for _ in range(3):
+        n_proc.output()
+
+    for _ in range(2):
+        t_proc.output()
+
+    for _ in range(1):
+        l_proc.output()
+
     stream.print_processors_stats()
     # print(f"Stream.proc {stream.processors}")
 
