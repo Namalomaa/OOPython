@@ -157,7 +157,7 @@ class CSVExportPlugin:
     def process_output(self, data: list[tuple[int, str]]) -> None:
         values = [value for _, value in data]
         print("CSV Output:")
-        print(",".join(values))
+        print(", ".join(values))
 
 
 class JSONExportPlugin:
