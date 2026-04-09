@@ -167,4 +167,10 @@ class ExportPlugin(Protocol):
         ...
 
 if __name__ == "__main__":
-    pass
+    print("=== Code Nexus - Data Pipeline ===\n")
+    print("Initialize Data Stream...")
+    ds = DataStream()
+    ds.print_processors_stats()
+    print("\nRegistering processors...")
+    ds.register_processor(NumericProcessor())
+    
