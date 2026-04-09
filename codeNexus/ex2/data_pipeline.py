@@ -171,7 +171,7 @@ class JSONExportPlugin:
 
 if __name__ == "__main__":
     print("=== Code Nexus - Data Pipeline ===\n")
-    print("Initialize Data Stream...")
+    print("Initialize Data Stream...\n")
     ds = DataStream()
     ds.print_processors_stats()
     print("\nRegistering processors...\n")
@@ -193,9 +193,9 @@ if __name__ == "__main__":
     print("\nSend 3 processed data from each processor to a CSV plugin:")
     csv = CSVExportPlugin()
     ds.output_pipeline(3, csv)
-    ds.print_processors_stats()
     print()
     ds.print_processors_stats()
+    print()
     batch2 = [
         21,
         ['I love AI', 'LLMs are wonderful', 'Stay healthy'],
@@ -211,5 +211,5 @@ if __name__ == "__main__":
     print("\nSend 5 processed data from each processor to a JSON plugin:")
     json = JSONExportPlugin()
     ds.output_pipeline(5, json)
+    print()
     ds.print_processors_stats()
-    
