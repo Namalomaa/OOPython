@@ -1,2 +1,4 @@
-import alchemy
-print(alchemy.elements.create_fire())
+import elements
+print("=== Alembic 0 ===")
+print("Using: 'import ...' structure to access elements.py")
+print(f"Testing create_fire: {elements.create_fire()}")
