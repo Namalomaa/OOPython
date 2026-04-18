@@ -1,13 +1,14 @@
 from alchemy.elements import create_air, create_earth
 from elements import create_fire, create_water
 
+
 def healing_potion() -> str:
-    return ("Healing potion brewed with '" 
+    return ("Healing potion brewed with '"
             + create_earth()
             + "' and '"
             + create_air()
             + "'"
-        )
+            )
 
 
 def strength_potion() -> str:
@@ -16,4 +17,4 @@ def strength_potion() -> str:
             + "' and '"
             + create_water()
             + "'"
-    )
+            )
