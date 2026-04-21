@@ -44,6 +44,24 @@ def strong_target(target: str, power: int) -> bool:
     return power > 40
 
 
+if __name__ == "__main__":
+    print("Testing spell combiner...")
+    combo = spell_combiner(fireball, heal)
+    print(combo("Dragon", 10))
+
+    print("\nTesting power amplifier...")
+    mega = power_amplifier(fireball, 3)
+    print("Original:", fireball("Dragon", 10))
+    print("Amplified:", mega("Dragon", 10))
+
+    print("\nTesting conditional caster...")
+    conditional = conditional_caster(strong_target, fireball)
+    print(conditional("Dragon", 50))  # should cast
+    print(conditional("Dragon", 10))  # should fizzle
+
+    print("\nTesting spell sequence...")
+    seq = spell_sequence([fireball, heal])
+    print(seq("Dragon", 20))
 """
 test for conditional_caster
 
