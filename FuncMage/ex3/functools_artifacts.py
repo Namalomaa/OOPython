@@ -32,7 +32,7 @@ def partial_enchanter(base_enchantment: Callable) -> dict[str, Callable]:
 @lru_cache
 def memoized_fibonacci(n: int) -> int:
     if n < 0:
-        raise ValueError("n must be non-negative")
+        raise ValueError("fibonacci number must be non-negative")
     if n < 2:
         return n
     return memoized_fibonacci(n - 1) + memoized_fibonacci(n - 2)
@@ -67,9 +67,9 @@ if __name__ == "__main__":
     print("Testing spell reducer...")
 
     spells = [40, 30, 20, 10]
-    print(f"Sum: {spell_reducer(spells, "add")}")
-    print(f"Product: {spell_reducer(spells, "multiply")}")
-    print(f"Max: {spell_reducer(spells, "max")}")
+    print(f"Sum: {spell_reducer(spells, 'add')}")
+    print(f"Product: {spell_reducer(spells, 'multiply')}")
+    print(f"Max: {spell_reducer(spells, 'max')}")
 
     print("\nTesting Partial enchanter")
     enchants = partial_enchanter(enchant)
