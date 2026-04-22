@@ -9,7 +9,7 @@ def power_filter(mages: list[dict], min_power: int) -> list[dict]:
 
 def spell_transformer(spells: list[str]) -> list[str]:
     st = list(map(lambda x: "* " + x + " *", spells))
-    return " ".join(st)
+    return st
 
 
 def mage_stats(mages: list[dict]) -> dict:
@@ -35,9 +35,9 @@ if __name__ == "__main__":
           f"comes before {sorted_artifacts[1]['name']}"
           f" ({sorted_artifacts[1]['power']} power)")
 
-    print("Testing spell transformer...")
+    print("\nTesting spell transformer...")
     spells = ["fireball", "heal", "shield"]
 
     transformed = spell_transformer(spells)
 
-    print("".join(transformed))
+    print(" ".join(transformed))
