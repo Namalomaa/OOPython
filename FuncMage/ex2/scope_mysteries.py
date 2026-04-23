@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from collections.abc import Callable
 from typing import Any
 
@@ -43,22 +44,28 @@ def memory_vault() -> dict[str, Callable]:
     }
 
 
-"""call1 = mage_counter()
-print(call1())  # should print 1
-print(call1())  # should print 2
-print(call1())  # should print 3
-call2 = mage_counter()
-print(call2())  # should print 1
-print(call2())  # should print 4
-print(call2())  # should print 5
+if __name__ == "__main__":
+    print("Testing mage counter...")
+    counter_a = mage_counter()
+    counter_b = mage_counter()
+    print("counter_a call 1:", counter_a())
+    print("counter_a call 2:", counter_a())
+    print("counter_b call 1:", counter_b())
 
-x = spell_accumulator(10)
-print(x(10))  # should print 20
-print(x(10))  # should print 30
-print(x(10))  # should print 40
+    print("\nTesting spell accumulator...")
+    sp = spell_accumulator(100)
+    print("Base 100, add 20:", sp(20))
+    print("Base 100, add 30:", sp(30))
 
-frutes = memory_vault()
-frutes["store"]("askadinia", 42)
-print(frutes["recall"]("askadinia"))
+    print("\nTesting enchantment factory...")
+    flaming = enchantment_factory("Flaming")
+    frozen = enchantment_factory("Frozen")
+    print(flaming("Sword"))
+    print(frozen("Shield"))
 
-"""
+    print("\nTesting memory vault...")
+    secrets = memory_vault()
+    print("Store 'secret' = 42")
+    secrets["store"]("secret", 42)
+    print("Recall 'secret':", secrets["recall"]("secret"))
+    print("Recall 'unknown':",  secrets["recall"]("unknown"))

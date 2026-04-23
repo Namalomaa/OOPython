@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from typing import Any
 from collections.abc import Callable
 from operator import add, mul

@@ -22,7 +22,6 @@ def mage_stats(mages: list[dict]) -> dict:
 
 if __name__ == "__main__":
     print("Testing artifact sorter...")
-
     artifacts = [
         {"name": "Crystal Orb", "power": 85},
         {"name": "Fire Staff", "power": 92}
@@ -35,9 +34,22 @@ if __name__ == "__main__":
           f"comes before {sorted_artifacts[1]['name']}"
           f" ({sorted_artifacts[1]['power']} power)")
 
+    print("\nTesting power filter...")
+    test_mages = [
+        {'name': 'Storm', 'power': 95},
+        {'name': 'Phoenix', 'power': 100},
+        {'name': 'Morgan', 'power': 49}
+    ]
+    strong_mages = power_filter(test_mages, 50)
+    print(f"Mages with power >= 50: {[m['name'] for m in strong_mages]}")
+
     print("\nTesting spell transformer...")
     spells = ["fireball", "heal", "shield"]
 
     transformed = spell_transformer(spells)
 
     print(" ".join(transformed))
+    print("\nTesting mage stats...")
+    stats = mage_stats(test_mages)
+    print(f"Max: {stats['max_power']}, Min: {stats['min_power']}, "
+          f"Avg: {stats['avg_power']:.2f}")

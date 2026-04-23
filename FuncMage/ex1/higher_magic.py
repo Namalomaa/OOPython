@@ -1,3 +1,4 @@
+#!/usr/bin/env python3
 from collections.abc import Callable
 
 
@@ -56,17 +57,9 @@ if __name__ == "__main__":
 
     print("\nTesting conditional caster...")
     conditional = conditional_caster(strong_target, fireball)
-    print(conditional("Dragon", 50))  # should cast
-    print(conditional("Dragon", 10))  # should fizzle
+    print(conditional("Dragon", 50))  # -> should cast
+    print(conditional("Dragon", 10))  # -> should fizzle
 
     print("\nTesting spell sequence...")
     seq = spell_sequence([fireball, heal])
     print(seq("Dragon", 20))
-"""
-test for conditional_caster
-
-res = conditional_caster(strong_target, fireball)
-print(res("Globlin", 30))  # Output: "Spell fizzled"
-print(res("Dragon", 50))   # Output: "Fireball hits Dragon for
-
-"""
