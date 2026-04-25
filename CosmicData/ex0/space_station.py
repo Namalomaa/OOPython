@@ -14,7 +14,7 @@ class SpaceStation(BaseModel):
     notes: Optional[str] = Field(default=None, max_length=200)
 
 
-def main():
+def main() -> None:
     print("Space Station Data Validation")
     print("========================================")
 
@@ -27,16 +27,18 @@ def main():
             oxygen_level=92.3,
             last_maintenance="2024-05-01T12:00:00"
         )
-        print("Valid station created:")
-        print(f"ID: {station.station_id}")
-        print(f"Name: {station.name}")
-        print(f"Crew: {station.crew_size} people")
-        print(f"Power: {station.power_level}%")
-        print(f"Oxygen: {station.oxygen_level}%")
-        print(f"Status: {'Operational'
-                         if station.is_operational else 'Non-operational'}")
     except ValidationError as e:
         print(f"Unexpected Error: {e}")
+        return
+    print("Valid station created:")
+    print(f"ID: {station.station_id}")
+    print(f"Name: {station.name}")
+    print(f"Crew: {station.crew_size} people")
+    print(f"Power: {station.power_level}%")
+    print(f"Oxygen: {station.oxygen_level}%")
+    status = 'Operational' if station.is_operational else 'Non-operational'
+    print(f"Status: {status}")
+
     print("\n========================================")
     print("Expected validation error:")
 
