@@ -6,15 +6,32 @@ from ex2 import (BattleStrategy, NormalStrategy, DefensiveStrategy,
 
 
 def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
-    for opponent in opponents:
-        factory, strategy = opponent
-        creature = factory.create_base()
-        print("--- Turn ---")
-        print(creature.describe())
-        try:
-            strategy.act(creature)
-        except StrategyError as e:
-            print(f"Strategy failed: {e}")
+    print("*** Tournament ***")
+    print(f"{len(opponents)} opponennts involved")
+
+    for i in range(len(opponents)):
+        for j in range(i + 1, len(opponents)):
+            fighter1 = opponents[i]
+            fighter2 = opponents[j]
+
+            fact1, strat1 = fighter1
+            fact2, strat2 = fighter2
+
+            creature1 = fact1.create_base()
+            creature2 = fact2.create_base()
+
+            print()
+            print("* Battle *")
+            print(creature1.describe())
+            print("vs.")
+            print(creature2.describe())
+            print("now fight!")
+
+            try:
+                strat1.act(creature1)
+                strat2.act(creature2)
+            except StrategyError as e:
+                print(f"Battle error, aborting tournament: {e}")
 
 
 if __name__ == "__main__":
@@ -27,9 +44,19 @@ if __name__ == "__main__":
     defensive = DefensiveStrategy()
     aggressive = AggressiveStrategy()
 
-    fighters = [(flame, normal),
-                (heal, defensive),
-                (transform, aggressive),
-                (aqua, aggressive)
-                ]
-    battle(fighters)
+    print("Tournament 0 (basic)")
+    trnm1 = [(flame, normal), (heal, defensive)]
+    print("[ (Flameling+Normal), (Healing+Defensive) ]")
+    battle(trnm1)
+    print()
+
+    print("Tournament 1 (error)")
+    trnm2 = [(flame, aggressive), (heal, defensive)]
+    print("[ (Flameling+Aggressive), (Healing+Defensive) ]")
+    battle(trnm2)
+    print()
+
+    print("Tournament 2 (multiple)")
+    trnm3 = [(aqua, normal), (heal, defensive), (transform, aggressive)]
+    print("[ (Aquabub+Normal), (Healing+Defensive), (Transform+Aggressive) ]")
+    battle(trnm3)
