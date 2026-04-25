@@ -7,7 +7,7 @@ from ex2 import (BattleStrategy, NormalStrategy, DefensiveStrategy,
 
 def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
     print("*** Tournament ***")
-    print(f"{len(opponents)} opponennts involved")
+    print(f"{len(opponents)} opponents involved")
 
     for i in range(len(opponents)):
         for j in range(i + 1, len(opponents)):
@@ -32,6 +32,7 @@ def battle(opponents: list[tuple[CreatureFactory, BattleStrategy]]) -> None:
                 strat2.act(creature2)
             except StrategyError as e:
                 print(f"Battle error, aborting tournament: {e}")
+                return
 
 
 if __name__ == "__main__":
