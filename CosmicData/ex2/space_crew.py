@@ -89,7 +89,6 @@ def main() -> None:
             specialization="Engineering",
             years_experience=3
         )
-
         mission = SpaceMission(
             mission_id="M2024_MARS",
             mission_name="Mars Colony Establishment",
