@@ -8,7 +8,7 @@ class Creature(ABC):
         self.c_type = t
 
     @abstractmethod
-    def attack(self):
+    def attack(self) -> str:
         pass
 
     def describe(self) -> str:
@@ -20,7 +20,7 @@ class Flameling(Creature):
     def __init__(self) -> None:
         super().__init__("Flameling", "Fire")
 
-    def attack(self):
+    def attack(self) -> str:
         return "Flameling uses Ember!"
 
 
@@ -29,7 +29,7 @@ class Pyrodon(Creature):
     def __init__(self) -> None:
         super().__init__("Pyrodon", "Fire/Flying")
 
-    def attack(self):
+    def attack(self) -> str:
         return "Pyrodon uses Flamethrower!"
 
 
@@ -38,7 +38,7 @@ class Aquabub(Creature):
     def __init__(self) -> None:
         super().__init__("Aquabub", "Water")
 
-    def attack(self):
+    def attack(self) -> str:
         return "Aquabub uses Water Gun!"
 
 
@@ -47,5 +47,5 @@ class Torragon(Creature):
     def __init__(self) -> None:
         super().__init__("Torragon", "Water")
 
-    def attack(self):
+    def attack(self) -> str:
         return "Torragon uses Hydro Pump!"
