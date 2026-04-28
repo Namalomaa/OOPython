@@ -1,6 +1,7 @@
 import sys
 import os
 
+
 def detect_env() -> bool:
     return (hasattr(sys, 'real_prefix') or
             (hasattr(sys, 'base_prefix') and sys.base_prefix != sys.prefix))
@@ -12,15 +13,16 @@ def display_env_info():
         print("MATRIX STATUS: Welcome to the construct")
         print()
         print(f"Current Python: {sys.prefix}")
-        print(f"Virtual Environment: {os.path.basename(sys.prefix)}")
+        print(f"Virtual Environment: {os.path.basename(sys.prefix)}\n")
         print(f"Environment Path: {sys.prefix}")
         import site
-        print(f"Package path: {site.getsitepackages()[0]}")
+        print(f"Package installation path: {site.getsitepackages()[0]}")
     else:
         print("MATRIX STATUS: You're still plugged in")
         print()
         print(f"Current Python: {sys.executable}")
         print(f"Virtual Environment: {os.environ.get("VERTUAL_ENV")} detected")
+        print()
         print("WARNING: You're in the global environment!")
         print("The machines can see everything you install.")
         print()
