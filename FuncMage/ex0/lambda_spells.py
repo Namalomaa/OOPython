@@ -1,9 +1,14 @@
 #!/usr/bin/env python3
-def artifact_sorter(artifacts: list[dict]) -> list[dict]:
-    return sorted(artifacts, key=lambda x: x["power"], reverse=True)
+from typing import Any
 
 
-def power_filter(mages: list[dict], min_power: int) -> list[dict]:
+def artifact_sorter(artifacts: list[dict[str, Any]]
+                    ) -> list[dict[str, Any]]:
+    return list(sorted(artifacts, key=lambda x: x["power"], reverse=True))
+
+
+def power_filter(mages: list[dict[str, Any]], min_power: int
+                 ) -> list[dict[str, Any]]:
     return list(filter(lambda x: x["power"] >= min_power, mages))
 
 
@@ -12,7 +17,7 @@ def spell_transformer(spells: list[str]) -> list[str]:
     return st
 
 
-def mage_stats(mages: list[dict]) -> dict:
+def mage_stats(mages: list[dict[str, Any]]) -> dict[str, float]:
     stat = dict()
     stat["max_power"] = max(mages, key=lambda x: x["power"])["power"]
     stat["min_power"] = min(mages, key=lambda x: x["power"])["power"]
@@ -23,8 +28,8 @@ def mage_stats(mages: list[dict]) -> dict:
 if __name__ == "__main__":
     print("Testing artifact sorter...")
     artifacts = [
-        {"name": "Crystal Orb", "power": 85},
-        {"name": "Fire Staff", "power": 92}
+        {"name": "Crystal Orb", "power": 85, "type": "focus"},
+        {"name": "Fire Staff", "power": 92,  "type": "weapon"}
     ]
 
     sorted_artifacts = artifact_sorter(artifacts)
