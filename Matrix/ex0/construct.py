@@ -21,7 +21,7 @@ def display_env_info():
         print("MATRIX STATUS: You're still plugged in")
         print()
         print(f"Current Python: {sys.executable}")
-        print(f"Virtual Environment: {os.environ.get("VERTUAL_ENV")} detected")
+        print(f"Virtual Environment: {os.environ.get('VERTUAL_ENV')} detected")
         print()
         print("WARNING: You're in the global environment!")
         print("The machines can see everything you install.")
