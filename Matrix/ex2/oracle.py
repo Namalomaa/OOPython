@@ -1,7 +1,6 @@
 import os
 from dotenv import load_dotenv
 
-
 def main() -> None:
     print("ORACLE STATUS: Reading the Matrix...\n")
 
@@ -14,35 +13,37 @@ def main() -> None:
     zion_endpoint = os.getenv("ZION_ENDPOINT")
 
     if not all([db_url, api_key, zion_endpoint]):
-        print("[ERROR] Missing critical configuration!")
-        print("Please ensure your .env file is configured or environment variables are set.")
+        print("[WARNING] Default or missing configuration detected!")
+        print("Please ensure your .env file is configured or"
+              " environment variables are set.")
         return
-    
+
     print("Configuration loaded:")
     print(f"Mode: {matrix_mode}")
 
     if matrix_mode == "development":
         print("Database: Connected to local instance")
-        print("Zion Network: Diagnostic mode offline")
-    elif matrix_mode == "production":
-        print("Database: Connected to secure production cluster")
-        print("Zion Network: Online")
     else:
-        print("Database: Unknown routing")
+        print("Database: Connected to secure production cluster")
 
     if api_key:
-        print("[OK] API key loaded securely")
+        print("API Access: Authenticated")
     else:
-        print("[WARNING] API key missing")
+        print("API Access: Missing")
 
     print(f"Log Level: {log_level}")
+
+    if matrix_mode == "development":
+        print("Zion Network: Online")
+    else:
+        print("Zion Network: Encrypted routing active")
 
     print("\nEnvironment security check:")
     print("[OK] No hardcoded secrets detected")
 
     if os.path.exists(".env"):
         print("[OK] .env file properly configured")
-        
+
     print("[OK] Production overrides available")
     print("\nThe Oracle sees all configurations.")
 
