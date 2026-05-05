@@ -3,14 +3,17 @@ import importlib
 
 def compare_versions(lib_name: str, installed_version: str,
                      req_version: str, desc: str) -> bool:
-    installed = tuple(int(x) for x in installed_version.split(".") if x.isdigit())
-    required = tuple(int(x) for x in req_version.split(".") if x.isdigit())
+    installed = tuple(int(x) for x in installed_version.split(".")
+                      if x.isdigit())
+    required = tuple(int(x) for x in req_version.split(".")
+                     if x.isdigit())
 
     if installed >= required:
         print(f"[OK] {lib_name} ({installed_version}) - {desc} ready")
         return True
     else:
-        print(f"[VERSION CONFLICT] {lib_name} ({installed_version}) is outdated")
+        print(f"[VERSION CONFLICT] {lib_name} ({installed_version})"
+              " is outdated")
         print(f"Need >= {req_version}")
         return False
 
@@ -19,7 +22,6 @@ def check_dependency() -> bool:
     dependencies = {
         'pandas': ('2.1.0', 'Data manipulation'),
         'numpy': ('1.25.0', 'Numerical computation'),
-        'requests': ('2.31.0', 'Network access'),
         'matplotlib': ('3.7.2', 'Visualization')
     }
     required = {'pandas', 'numpy', 'matplotlib'}
@@ -58,7 +60,7 @@ def analyze_matrix() -> None:
     print("Generating visualization...")
     plt.figure(figsize=(10, 6))
     plt.scatter(df['Time'], df['Value'])
-    
+
     plt.title('Matrix Data Analysis')
     plt.xlabel('Time')
     plt.ylabel('Values')
